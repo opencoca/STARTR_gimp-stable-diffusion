@@ -1,5 +1,7 @@
 # gimp-stable-diffusion
 
+TODO Add https://sveinbjorn.org/platypus and Windows installers 
+
 This repository includes a GIMP plugin for communication with a stable-diffusion server and a Google colab notebook for running the server.
 
 Please check HISTORY.md for the latest changes. 
