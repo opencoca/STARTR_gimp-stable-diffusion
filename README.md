@@ -1,7 +1,9 @@
 # gimp-stable-diffusion
 
-[] TODO Add https://sveinbjorn.org/platypus and Windows installers 
-[] TODO Look at https://portableapps.com/downloading/?a=GIMPPortable&s=s&p=&d=pa&f=GIMPPortable_2.10.32.paf.exe as windows option
+- [ ] TODO Add https://sveinbjorn.org/platypus and Windows installers 
+- [ ] TODO Look at https://portableapps.com/downloading/?a=GIMPPortable&s=s&p=&d=pa&f=GIMPPortable_2.10.32.paf.exe as windows option
+- [ ] TODO https://nsis-dev.github.io/
+- [X] Load Colab when unable to connect to colab hosted service
 
 This repository includes a GIMP plugin for communication with a stable-diffusion server and a Google colab notebook for running the server.
 
