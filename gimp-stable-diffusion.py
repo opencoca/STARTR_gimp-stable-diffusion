@@ -12,6 +12,7 @@ import re
 from gimpfu import *
 
 import ssl
+import webbrowser
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -78,7 +79,7 @@ def img2img(image, drawable, isInpainting, maskBrightness, maskContrast, initStr
    url = url + API_ENDPOINT
 
    request = urllib2.Request(url=url, data=data, headers=headers)
-   pdb.gimp_progress_set_text("starting dreaming now...")
+   pdb.gimp_progress_set_text("Sending image to " + url)
 
    try:
       response = urllib2.urlopen(request)
@@ -96,18 +97,41 @@ def img2img(image, drawable, isInpainting, maskBrightness, maskContrast, initStr
 
    except Exception as ex:
       if isinstance(ex, urllib2.HTTPError) and ex.code == 405:
-         raise Exception("GIMP plugin and stable-diffusion server don't match. Please update the GIMP plugin. If the error still occurs, please reopen the colab notebook.")
+         raise Exception("Please update the GIMP plugin. If the error still occurs, please relaunch the colab notebook.")
+      if "servname" in str(ex.reason):
+         webbrowser.open("https://colab.research.google.com/github/opencoca/gimp-stable-diffusion/blob/main/gimp-stable-diffusion.ipynb")
+         raise Exception("Please check the Backend URL and relaunch the colab notebook if necessary.")
       else:
-         raise ex
+         raise Exception("Error: " + str(ex.reason))
 
    return
 
+"""
+ [
+   '__class__', 
+   '__delattr__', 
+   '__dict__', 
+   '__doc__', 
+   '__format__', 
+   '__getattribute__', 
+   '__getitem__', '__getslice__', '__hash__', 
+   '__init__', '__module__', '__new__', 
+   '__reduce__', '__reduce_ex__', '__repr__', 
+   '__setattr__', '__setstate__', '__sizeof__', 
+   '__str__', '__subclasshook__', '__unicode__', 
+   '__weakref__', 'args', 'errno', 
+   'filename', 'message', 'reason', 
+   'strerror']
+   <urlopen error [Errno 8] nodename nor servname provided, or not known>
+
+"""
+
 register(
    "img2img",
-   "img2img",
-   "img2img",
-   "BlueTurtleAI",
-   "BlueTurtleAI",
+   "Given an image, generate a new one https://startr.ca/img2img",
+   "Gimp plugin for img2img",
+   "Startr LLC & OpenCoCA & BlueTurtleAI",
+   "AGPL",
    "2022",
    "<Image>/AI/Stable img2img",
    "*",
@@ -121,7 +145,7 @@ register(
       (PF_STRING, "seed", "Seed (optional)", ""),
       (PF_SLIDER, "imageCount", "Number of images", 1, (1, 4,1)),
       (PF_STRING, "prompt", "Prompt", ""),
-      (PF_STRING, "url", "Backend root URL", "")
+      (PF_STRING, "url", "Backend URL", "")
    ],
    [],
    img2img
