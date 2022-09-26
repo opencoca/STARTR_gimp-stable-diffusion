@@ -1,6 +1,6 @@
 # gimp-stable-diffusion
 
-### Gimp stable diffusion supercharges GIMP with our AI plugin, letting Gimp work with the Stable Diffusion art AI. 
+### Gimp stable diffusion supercharges GIMP with our AI plugin, letting you use Gimp to work with the Stable Diffusion art AI. 
 
 We are leveraging Google Colab's free TPU and GPUs to create unique, fantastic images using Gimp and AI in less than a minute! 
 
