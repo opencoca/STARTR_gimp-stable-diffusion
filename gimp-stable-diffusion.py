@@ -60,7 +60,7 @@ def img2img(image, drawable, isInpainting, maskBrightness, maskContrast, initStr
       "height": int(image.height),
       "prompt": prompt,
       "image_count": int(imageCount),
-      "api_version": API_VERSION
+      "api_version": API_VERSION,
    }
 
    seed = -1 if not seed else int(seed)
@@ -98,28 +98,15 @@ def img2img(image, drawable, isInpainting, maskBrightness, maskContrast, initStr
    except Exception as ex:
       if isinstance(ex, urllib2.HTTPError) and ex.code == 405:
          raise Exception("Please update the GIMP plugin. If the error still occurs, please relaunch the colab notebook.")
-      if "servname" in str(ex.reason):
-         webbrowser.open("https://colab.research.google.com/github/opencoca/gimp-stable-diffusion/blob/main/gimp-stable-diffusion.ipynb")
-         raise Exception("Please check the Backend URL and relaunch the colab notebook if necessary.")
       else:
-         raise Exception("Error: " + str(ex.reason))
+         webbrowser.open("https://colab.research.google.com/github/opencoca/gimp-stable-diffusion/blob/main/gimp-stable-diffusion.ipynb")
+         raise Exception("Please check prompt and  Backend URL and relaunch the colab notebook if necessary." + str(ex))
 
    return
 
 """
- [
-   '__class__', 
-   '__delattr__', 
-   '__dict__', 
-   '__doc__', 
-   '__format__', 
-   '__getattribute__', 
-   '__getitem__', '__getslice__', '__hash__', 
-   '__init__', '__module__', '__new__', 
-   '__reduce__', '__reduce_ex__', '__repr__', 
-   '__setattr__', '__setstate__', '__sizeof__', 
-   '__str__', '__subclasshook__', '__unicode__', 
-   '__weakref__', 'args', 'errno', 
+ dir(ex) =[
+   'args', 'errno', 
    'filename', 'message', 'reason', 
    'strerror']
    <urlopen error [Errno 8] nodename nor servname provided, or not known>
@@ -128,12 +115,12 @@ def img2img(image, drawable, isInpainting, maskBrightness, maskContrast, initStr
 
 register(
    "img2img",
-   "Given an image, generate a new one https://startr.ca/img2img",
+   "Given an image and a prompt, generate a new one using AIhttps://startr.ca/img2img",
    "Gimp plugin for img2img",
    "Startr LLC & OpenCoCA & BlueTurtleAI",
    "AGPL",
    "2022",
-   "<Image>/AI/Stable img2img",
+   "<Image>/AI/img2img",
    "*",
    [
       (PF_TOGGLE, "isInpainting", "Inpainting", False),
@@ -144,8 +131,8 @@ register(
       (PF_SLIDER, "steps", "Steps", 50, (10, 150, 1)),
       (PF_STRING, "seed", "Seed (optional)", ""),
       (PF_SLIDER, "imageCount", "Number of images", 1, (1, 4,1)),
-      (PF_STRING, "prompt", "Prompt", ""),
-      (PF_STRING, "url", "Backend URL", "")
+      (PF_STRING, "prompt", "Prompt", "A 19th Century Owl Etching by G. Hullmandel award winning trending on"),
+      (PF_STRING, "url", "Backend URL", "This_will_be_at_bottom_of_colab_on_run.trycloudflare.com/")
    ],
    [],
    img2img
