@@ -1,5 +1,7 @@
 # gimp-stable-diffusion
 
+![Gimp AI](https://github.com/opencoca/gimp-stable-diffusion/raw/main/gimp-ai.gif)
+
 - [ ] TODO Add https://sveinbjorn.org/platypus and Windows installers 
 - [ ] TODO Look at https://portableapps.com/downloading/?a=GIMPPortable&s=s&p=&d=pa&f=GIMPPortable_2.10.32.paf.exe as windows option
 - [ ] TODO https://nsis-dev.github.io/
