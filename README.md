@@ -1,5 +1,24 @@
 # gimp-stable-diffusion
 
+### Gimp stable diffusion supercharges GIMP with our AI plugin, letting Gimp work with the Stable Diffusion art AI. 
+
+We are leveraging Google Colab's free TPU and GPUs to create unique, fantastic images using Gimp and AI in less than a minute! 
+
+## Usage
+
+1. Download the latest version of the gimp-stable-diffusion plugin [here](https://raw.githubusercontent.com/opencoca/gimp-stable-diffusion/main/gimp-stable-diffusion.py)
+1. Save our plugin to your GIMP plugin's directory
+1. 	Open an image in Gimp from your hard drive
+1. Resize the image to 1024 by 1024 or less. 
+  -Our AI isn't optimized for high-resolution images, but we're working on that.
+1. Click on the new "AI" menu option and select "img2img".
+1. A pop-up window will appear. Enter your prompt and backend URL.
+1. Click "OK."
+1. Your image is now processing in the background!
+1. Once your image is created, it will load as a new image.
+
+For more information read the detailed setup instructions below.
+
 ![Gimp AI](https://github.com/opencoca/gimp-stable-diffusion/raw/main/gimp-ai.gif)
 
 - [ ] TODO Add https://sveinbjorn.org/platypus and Windows installers 
@@ -7,15 +26,10 @@
 - [ ] TODO https://nsis-dev.github.io/
 - [X] Load Colab when unable to connect to colab hosted service
 
-This repository includes a GIMP plugin for communication with a stable-diffusion server and a Google colab notebook for running the server.
-
-Please check HISTORY.md for the latest changes. 
-
-Click here [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/opencoca/gimp-stable-diffusion/blob/main/gimp-stable-diffusion.ipynb) to open the notebook, if you already read the setup instructions below.
 
 ## Overview
 
-The server exposes a REST API, which is used by the GIMP plugin to communicate with the server. Currently the plugin offers the possibility to use img2img. img2img means, that you create an image in GIMP, which is then used as the base for the image creation in stable-diffusion.
+The server exposes an API, which is used by the GIMP plugin to communicate with the server. The plugin offers the possibility to use img2img. img2img lets you create and manipulate images in GIMP and then 
 
 
 
